@@ -8,6 +8,7 @@ def pascal_triangle(n) - the function prodices a list of lists of integers
                         of the pascals triangle with n depth.
 """
 
+
 def pascal_triangle(n):
     """
     n is assumed to be any integer
@@ -31,12 +32,12 @@ def pascal_triangle(n):
                 break
             end_flag = 1
             new_ = recent_level[i] + recent_level[i + 1] \
-                    if len(recent_level) != 1 else 2
+                if len(recent_level) != 1 else 2
             level.insert(-1, new_)
-                
         triangle.append(level)
         n -= 1
     return triangle
+
 
 if __name__ == "__main__":
     from sys import argv
