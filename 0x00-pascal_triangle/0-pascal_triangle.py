@@ -1,11 +1,21 @@
 #!/usr/bin/python3
 """
-Interview practice - the  pascals triangle
+Interview practice - the pascals triangle
+Definition: a triangular array of numbers in which those at the ends of the
+            rows are 1 and each of the others is the sum of the nearest two
+            numbers in the row above (the apex, 1, being at the top).
 def pascal_triangle(n) - the function prodices a list of lists of integers
                         of the pascals triangle with n depth.
 """
 
 def pascal_triangle(n):
+    """
+    n is assumed to be any integer
+
+    the function produces a list of lists of integers, sequentially
+    representing the depth of the triangle from top
+    of the pascals triangle with n depth.
+    """
     if not n:
         return []
     elif n == 1:
@@ -30,6 +40,7 @@ def pascal_triangle(n):
 
 if __name__ == "__main__":
     from sys import argv
+    """"""
     tri = pascal_triangle(int(argv[1]))
     print(tri)
     for i in tri:
