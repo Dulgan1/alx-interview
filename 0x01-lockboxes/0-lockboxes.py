@@ -33,7 +33,6 @@ def canUnlockAll(boxes):
                 if len(key_box) < key_box[i]:
                     unlocked.append(key_box[i])
                 unlocked.append(boxes[key_box[i]])
-        print(unlocked)
     if len(unlocked) >= len(boxes):
         return True
     return False
