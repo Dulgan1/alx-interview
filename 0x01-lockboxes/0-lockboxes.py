@@ -21,17 +21,13 @@ def canUnlockAll(boxes):
     Unlock all check function
     """
     unlocked = [boxes[0]]
-    for box in boxes:
-        key_box = unlocked[-1]
-        if len(key_box) == 1:
-            unlocked.append(boxes[key_box[0]])
-        elif len(key_box) == 0:
-            unlocked.append(list())
-        else:
-            for i in range(len(key_box) - 1):
-                if len(key_box) < key_box[i]:
-                    unlocked.append(key_box[i])
-                unlocked.append(boxes[key_box[i]])
+    
+    for idx, box in enumerate(boxes):
+        if box:
+            for key in box:
+                if (key not in unlocked) and (key < len(boxes)) \
+                        and (key != idx):
+                    unlocked.append(key)
     if len(unlocked) >= len(boxes):
         return True
     return False
