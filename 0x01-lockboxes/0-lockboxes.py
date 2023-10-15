@@ -21,7 +21,6 @@ def canUnlockAll(boxes):
     Unlock all check function
     """
     unlocked = [boxes[0]]
-    print(boxes)
     for box in boxes:
         key_box = unlocked[-1]
         if len(key_box) == 1:
