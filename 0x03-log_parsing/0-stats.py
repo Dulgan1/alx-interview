@@ -49,7 +49,6 @@ if __name__ == '__main__':
             # Print stats after 10 badges
             if not badge % 10:
                 print("File size: {}".format(total_size))
-                total_size = 0
                 keys = list(code_dict.keys())
                 keys.sort()
                 for key in keys:
@@ -59,7 +58,8 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         # Print stats after keyboard interrupt, works.
         print("File size: {}".format(total_size))
-        total_size = 0
+        keys = list(code_dict.keys())
+        keys.sort()
         for key in keys:
             if code_dict[key] > 0:
                 print("{}: {}".format(key, code_dict[key]))
