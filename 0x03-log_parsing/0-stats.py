@@ -55,7 +55,6 @@ if __name__ == '__main__':
                 for key in keys:
                     if code_dict[key] > 0:
                         print("{}: {}".format(key, code_dict[key]))
-                    code_dict[key] = 0
 
     except KeyboardInterrupt:
         # Print stats after keyboard interrupt, works.
@@ -64,4 +63,3 @@ if __name__ == '__main__':
         for key in keys:
             if code_dict[key] > 0:
                 print("{}: {}".format(key, code_dict[key]))
-            code_dict[key] = 0
