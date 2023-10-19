@@ -51,12 +51,14 @@ if __name__ == '__main__':
                 print("File size: {}".format(total_size))
                 total_size = 0
                 for k, v in code_dict.items():
-                    print("{}: {}".format(k, v))
+                    if v > 0:
+                        print("{}: {}".format(k, v))
                     code_dict[k] = 0
     except KeyboardInterrupt:
         # Print stats after keyboard interrupt, not working yet
         print("File size: {}".format(total_size))
         total_size = 0
         for k, v in code_dict.items():
-            print("{}: {}".format(k, v))
+            if v > 0:
+                print("{}: {}".format(k, v))
             code_dict[k] = 0
