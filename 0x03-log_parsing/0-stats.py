@@ -50,15 +50,18 @@ if __name__ == '__main__':
             if not badge % 10:
                 print("File size: {}".format(total_size))
                 total_size = 0
-                for k, v in code_dict.items():
-                    if v > 0:
-                        print("{}: {}".format(k, v))
-                    code_dict[k] = 0
+                keys = list(code_dict.keys())
+                keys.sort()
+                for key in keys:
+                    if code_dict[key] > 0:
+                        print("{}: {}".format(key, code_dict[key]))
+                    code_dict[key] = 0
+
     except KeyboardInterrupt:
-        # Print stats after keyboard interrupt, not working yet
+        # Print stats after keyboard interrupt, works.
         print("File size: {}".format(total_size))
         total_size = 0
-        for k, v in code_dict.items():
-            if v > 0:
-                print("{}: {}".format(k, v))
-            code_dict[k] = 0
+        for key in keys:
+            if code_dict[key] > 0:
+                print("{}: {}".format(key, code_dict[key]))
+            code_dict[key] = 0
