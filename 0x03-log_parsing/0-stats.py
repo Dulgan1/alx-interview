@@ -4,14 +4,14 @@ Write a script that reads stdin line by line and computes metrics:
 
 Input format:
 
-<IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size> 
+<IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>
 
 (if the format is not this one, the line must be skipped)
 
 After every 10 lines and/or a keyboard interruption (CTRL + C),
 print these statistics from the beginning:
     - Total file size: File size: <total size>
-    - where <total size> is the sum of all previous <file size> 
+    - where <total size> is the sum of all previous <file size>
       (see input format above)
 
 Number of lines by status code:
@@ -29,22 +29,23 @@ if __name__ == '__main__':
     total_size = 0
     code_dict = {200: 0, 301: 0, 400: 0, 401: 0,
                  403: 0, 404: 0, 405: 0, 500: 0}
-    for line in sys.stdin:
-        words = line.rstrip().split()
-        if (len(words) != 9) or ('"GET' not in words) \
-                or ('HTTP/1.1"' not in words):
-            continue
-        code = int(words[-2])
 
-        try:
-            code_dict[code] += 1
-        except:
-            pass
+    try:
+        for line in sys.stdin:
+            words = line.rstrip().split()
+            if (len(words) != 9) or ('"GET' not in words) \
+                    or ('HTTP/1.1"' not in words):
+                continue
+            code = int(words[-2])
 
-        total_size += int(words[-1])
-        badge += 1
+            if code in code_dict:
+                code_dict[code] += 1
+            else:
+                continue
 
-        try:
+            total_size += int(words[-1])
+            badge += 1
+
             # Print stats after 10 badges
             if not badge % 10:
                 print("File size: {}".format(total_size))
@@ -52,11 +53,10 @@ if __name__ == '__main__':
                 for k, v in code_dict.items():
                     print("{}: {}".format(k, v))
                     code_dict[k] = 0
-        except KeyboardInterrupt:
-            # Print stats after keyboard interrupt, not working yet
-            print("File size: {}".format(total_size))
-            total_size = 0
-            for k, v in code_dict.items():
-                print("{}: {}".format(k, v))
-                code_dict[k] = 0
-            raise KeyboardInterrupt
+    except KeyboardInterrupt:
+        # Print stats after keyboard interrupt, not working yet
+        print("File size: {}".format(total_size))
+        total_size = 0
+        for k, v in code_dict.items():
+            print("{}: {}".format(k, v))
+            code_dict[k] = 0
