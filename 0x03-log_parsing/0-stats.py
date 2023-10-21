@@ -29,6 +29,7 @@ total_size = 0
 code_dict = {200: 0, 301: 0, 400: 0, 401: 0,
              403: 0, 404: 0, 405: 0, 500: 0}
 
+
 def print_badge():
     print("File size: {}".format(total_size))
     keys = list(code_dict.keys())
@@ -36,6 +37,7 @@ def print_badge():
     for key in keys:
         if code_dict[key] > 0:
             print("{}: {}".format(key, code_dict[key]))
+
 
 if __name__ == '__main__':
     try:
@@ -61,4 +63,3 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         # Print stats after keyboard interrupt, works.
         print_badge()
-    print_badge()
