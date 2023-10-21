@@ -24,12 +24,20 @@ status codes should be printed in ascending order
 import sys
 
 
-if __name__ == '__main__':
-    badge = 0
-    total_size = 0
-    code_dict = {200: 0, 301: 0, 400: 0, 401: 0,
-                 403: 0, 404: 0, 405: 0, 500: 0}
+badge = 0
+total_size = 0
+code_dict = {200: 0, 301: 0, 400: 0, 401: 0,
+             403: 0, 404: 0, 405: 0, 500: 0}
 
+def print_badge():
+    print("File size: {}".format(total_size))
+    keys = list(code_dict.keys())
+    keys.sort()
+    for key in keys:
+        if code_dict[key] > 0:
+            print("{}: {}".format(key, code_dict[key]))
+
+if __name__ == '__main__':
     try:
         for line in sys.stdin:
             words = line.rstrip().split()
@@ -48,18 +56,9 @@ if __name__ == '__main__':
 
             # Print stats after 10 badges
             if not badge % 10:
-                print("File size: {}".format(total_size))
-                keys = list(code_dict.keys())
-                keys.sort()
-                for key in keys:
-                    if code_dict[key] > 0:
-                        print("{}: {}".format(key, code_dict[key]))
+                print_badge()
 
     except KeyboardInterrupt:
         # Print stats after keyboard interrupt, works.
-        print("File size: {}".format(total_size))
-        keys = list(code_dict.keys())
-        keys.sort()
-        for key in keys:
-            if code_dict[key] > 0:
-                print("{}: {}".format(key, code_dict[key]))
+        print_badge()
+    print_badge()
