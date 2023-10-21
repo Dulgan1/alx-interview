@@ -63,3 +63,4 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         # Print stats after keyboard interrupt, works.
         print_badge()
+    print_badge()
