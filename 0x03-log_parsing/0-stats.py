@@ -46,14 +46,19 @@ if __name__ == '__main__':
             if (len(words) != 9) or ('"GET' not in words) \
                     or ('HTTP/1.1"' not in words):
                 continue
-            code = int(words[-2])
+            try:
+                code = int(words[-2])
+            except ValueError:
+                continue
 
             if code in code_dict:
+                try:
+                    total_size += int(words[-1])
+                except ValueError:
+                    continue
                 code_dict[code] += 1
             else:
                 continue
-
-            total_size += int(words[-1])
             badge += 1
 
             # Print stats after 10 badges
