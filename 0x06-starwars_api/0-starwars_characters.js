@@ -10,12 +10,24 @@
 const url = "https://swapi-api.alx-tools.com/api/films/" + process.argv[2];
 const request = require('request');
 
-request(url, (error, response, body) => {
-  const obj_body = JSON.parse(body);
-  for (const arg in obj_body.characters) {
-    request(obj_body.characters[arg], (cerror, cresponse, cbody) => {
-     const  obj_cbody = JSON.parse(cbody);
-      console.log(obj_cbody.name);
+function ask(link) {
+  return new Promise((resolve, reject) => {
+    request(link, (error, response, body) => {
+      if (response.statusCode === 200 && !error) {
+        resolve(JSON.parse(body));
+      } else {
+        reject(error);
+      }
     });
+  });
+}
+
+async function run(link) {
+  const res  = await ask(link);
+  for (const value of res.characters) {
+    const c_obj = await ask(value);
+    console.log(c_obj.name);
   }
-});
+}
+
+run(url);
