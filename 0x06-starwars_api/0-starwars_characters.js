@@ -11,11 +11,11 @@ const url = "https://swapi-api.alx-tools.com/api/films/" + process.argv[2];
 const request = require('request');
 
 request(url, (error, response, body) => {
-  body = JSON.parse(body)
-  for (const arg in body.characters) {
-    request(arg, (cerror, cresponse, cbody) => {
-      cbody = JSON.parse(cbody);
-      console.log(cbody.name);
+  const obj_body = JSON.parse(body);
+  for (const arg in obj_body.characters) {
+    request(obj_body.characters[arg], (cerror, cresponse, cbody) => {
+     const  obj_cbody = JSON.parse(cbody);
+      console.log(obj_cbody.name);
     });
   }
 });
