@@ -7,10 +7,10 @@
  * You must use the Star wars API
  * You must use the request module
  * */
-const url = "https://swapi-api.alx-tools.com/api/films/" + process.argv[2];
+const url = 'https://swapi-api.alx-tools.com/api/films/' + process.argv[2];
 const request = require('request');
 
-function ask(link) {
+function ask (link) {
   return new Promise((resolve, reject) => {
     request(link, (error, response, body) => {
       if (response.statusCode === 200 && !error) {
@@ -22,11 +22,11 @@ function ask(link) {
   });
 }
 
-async function run(link) {
-  const res  = await ask(link);
+async function run (link) {
+  const res = await ask(link);
   for (const value of res.characters) {
-    const c_obj = await ask(value);
-    console.log(c_obj.name);
+    const cObj = await ask(value);
+    console.log(cObj.name);
   }
 }
 
