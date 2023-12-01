@@ -9,8 +9,8 @@
  tweak grid for different perimeter.
 """
 # v1.0
-#def island_perimeter(space):
-#    """ Function to get perimeter"""
+# def island_perimeter(space):
+#    Function to get perimeter
 #    pmetre = 0
 #    for x in range(len(space)):
 #        for y in range(len(space[x])):
@@ -24,6 +24,7 @@
 #                if space[x][y + 1] == 0: # check cell by right
 #                    pmetre += 1
 #    return pmetre
+
 
 def island_perimeter(space):
     """ Function to get parametre """
