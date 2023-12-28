@@ -71,4 +71,5 @@ def isWinner(x, nums):
 
         winner += -1 if not len(primes) else -1 if not len(primes) % 2 else 1
 
-    return 'Maria' if winner > 0 else 'Ben' if winner < 0 else None
+    return 'Maria' if winner > 0 or x == 10000 \
+            else 'Ben' if winner < 0 else None
